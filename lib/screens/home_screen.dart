@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:to_do_app/utils/extensions.dart';
+import 'package:to_do_app/widgets/common_container.dart';
+import 'package:to_do_app/widgets/display_list_of_tasks.dart';
+import 'package:to_do_app/widgets/display_white_text.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,30 +21,64 @@ class HomeScreen extends StatelessWidget {
                 height: deviceSize.height * 0.3,
                 width: deviceSize.width,
                 color: colors.primary,
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Nov ..., 2024",
-                      style: context.textTheme.headlineSmall?.copyWith(
-                        color: colors.surface,
-                        fontSize: 20,
-                      ),
+                    DisplayWhiteText(
+                      text: "November 2024",
+                      fontSize: 20,
+                      fontWeight: FontWeight.normal,
                     ),
+                    DisplayWhiteText(
+                      text: "My Todo List",
+                      fontSize: 40,
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  width: deviceSize.width,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+          Positioned(
+            top: 130,
+            left: 0,
+            right: 0,
+            child: SafeArea(
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const DisplayListOfTasks(tasks: const []),
                     const Gap(20),
                     Text(
-                      "My Todo List",
-                      style: context.textTheme.headlineSmall?.copyWith(
-                        color: colors.surface,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 40,
+                      'Completed',
+                      style: context.textTheme.headlineMedium,
+                    ),
+                    const Gap(20),
+                    const DisplayListOfTasks(
+                      tasks: const [],
+                      isCompletedTasks: true,
+                    ),
+                    const Gap(20),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: DisplayWhiteText(text: "Add New Task"),
                       ),
                     ),
                   ],
                 ),
               ),
-            ]
-          )
+            ),
+          ),
         ],
       ),
     );

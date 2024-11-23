@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:to_do_app/data/data.dart';
 import 'package:to_do_app/utils/extensions.dart';
 import 'package:to_do_app/widgets/common_container.dart';
 import 'package:to_do_app/widgets/display_list_of_tasks.dart';
 import 'package:to_do_app/widgets/display_white_text.dart';
+
+import '../utils/task_categories.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -55,7 +58,22 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const DisplayListOfTasks(tasks: const []),
+                    const DisplayListOfTasks(tasks: const [
+                      Task(
+                          title: 'title 1',
+                          time: '11:00',
+                          date: 'Nov, 23',
+                          note: 'note',
+                          isCompleted: false,
+                          category: TaskCategories.shopping),
+                      Task(
+                          title: 'title 2',
+                          time: '11:00',
+                          date: 'Nov, 23',
+                          note: 'note',
+                          isCompleted: false,
+                          category: TaskCategories.education),
+                    ]),
                     const Gap(20),
                     Text(
                       'Completed',
@@ -63,7 +81,22 @@ class HomeScreen extends StatelessWidget {
                     ),
                     const Gap(20),
                     const DisplayListOfTasks(
-                      tasks: const [],
+                      tasks: [
+                        Task(
+                            title: 'title 1',
+                            time: '11:00',
+                            date: 'Nov, 23',
+                            note: 'note',
+                            isCompleted: true,
+                            category: TaskCategories.personal),
+                        Task(
+                            title: 'title 2',
+                            time: '11:00',
+                            date: 'Nov, 23',
+                            note: 'note',
+                            isCompleted: true,
+                            category: TaskCategories.work),
+                      ],
                       isCompletedTasks: true,
                     ),
                     const Gap(20),

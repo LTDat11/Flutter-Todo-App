@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:gap/gap.dart';
 import 'package:to_do_app/utils/utils.dart';
+import 'package:to_do_app/widgets/task_tile.dart';
 import '../data/models/task.dart';
 import 'common_container.dart';
 
@@ -28,12 +30,16 @@ class DisplayListOfTasks extends StatelessWidget {
                 style: context.textTheme.headlineSmall,
               ),
             )
-          : ListView.builder(
+          : ListView.separated(
               shrinkWrap: true,
               itemCount: tasks.length,
               padding: EdgeInsets.zero,
               itemBuilder: (ctx, index) {
-                return const Text("Home");
+                final task = tasks[index];
+                return TaskTile(task: task);
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return const Divider(thickness: 1.5);
               },
             ),
     );

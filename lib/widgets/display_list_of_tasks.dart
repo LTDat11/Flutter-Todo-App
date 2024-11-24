@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:gap/gap.dart';
 import 'package:to_do_app/utils/utils.dart';
+import 'package:to_do_app/widgets/task_details.dart';
 import 'package:to_do_app/widgets/task_tile.dart';
 import '../data/models/task.dart';
 import 'common_container.dart';
@@ -36,7 +37,20 @@ class DisplayListOfTasks extends StatelessWidget {
               padding: EdgeInsets.zero,
               itemBuilder: (ctx, index) {
                 final task = tasks[index];
-                return TaskTile(task: task);
+                return InkWell(
+                  onLongPress: () {
+                    //delete task
+                  },
+                  onTap: () async {
+                    //show task details
+                    await showModalBottomSheet(
+                        context: context,
+                        builder: (ctx) {
+                          return TaskDetails(task: task);
+                        });
+                  },
+                  child: TaskTile(task: task),
+                );
               },
               separatorBuilder: (BuildContext context, int index) {
                 return const Divider(thickness: 1.5);

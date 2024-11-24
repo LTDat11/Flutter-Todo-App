@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                           title: 'title 1',
                           time: '11:00',
                           date: 'Nov, 23',
-                          note: 'note',
+                          note: '',
                           isCompleted: false,
                           category: TaskCategories.shopping),
                       Task(
